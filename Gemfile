@@ -22,6 +22,7 @@ group :development do
   gem 'guard-bundler'
   gem 'guard-rails'
   gem 'guard-rspec'
+  gem 'guard-spork'
   gem 'hub', :require=>nil
   gem 'quiet_assets'
   gem 'rails_layout'
@@ -32,6 +33,8 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'pry-rails'
+  gem 'pry-nav'
 end
 group :production do
   gem 'thin'
