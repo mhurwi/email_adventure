@@ -101,6 +101,9 @@ GEM
       bundler (~> 1.0)
       rails (>= 3, < 5)
     formatador (0.2.4)
+    griddler (0.6.1)
+      htmlentities
+      rails (>= 3.2.0)
     guard (2.2.5)
       formatador (>= 0.2.4)
       listen (~> 2.1)
@@ -116,6 +119,7 @@ GEM
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
     hike (1.2.3)
+    htmlentities (4.3.1)
     hub (1.11.1)
     i18n (0.6.9)
     jbuilder (1.5.3)
@@ -254,6 +258,7 @@ DEPENDENCIES
   email_spec
   factory_girl_rails
   figaro
+  griddler
   guard-bundler
   guard-rails
   guard-rspec
