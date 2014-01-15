@@ -1,4 +1,5 @@
 require 'spec_helper'
+require_relative '../../lib/email_processor'
 
 
 describe "EmailProcessor" do 

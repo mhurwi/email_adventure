@@ -22,6 +22,7 @@ group :development do
   gem 'guard-bundler'
   gem 'guard-rails'
   gem 'guard-rspec'
+  gem 'spork-rails', :github => 'sporkrb/spork-rails'
   gem 'guard-spork'
   gem 'hub', :require=>nil
   gem 'quiet_assets'
