@@ -19,6 +19,11 @@ describe 'Stories' do
 			click_link "Test Story"
 			expect(current_path).to eql story_path(story)
 		end
+
+		it "can go to create new story page" do 
+			click_link 'Create new story'
+			expect(current_path).to eql new_story_path
+		end
 	end
 
 end

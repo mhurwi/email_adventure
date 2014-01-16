@@ -12,4 +12,9 @@ class StoriesController < ApplicationController
 		respond_with @story
 	end
 
+	def new
+		@story = Story.new
+		respond_with @story
+	end
+
 end
