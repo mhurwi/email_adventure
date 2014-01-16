@@ -17,4 +17,15 @@ class StoriesController < ApplicationController
 		respond_with @story
 	end
 
+	def create
+		@story = Story.new(params[:story])
+		if @story.save
+			flash[:notice] = "Great! You have created a new story!"
+			redirect_to story_path(@story)
+		else
+			flash[:error] = "Whoops! Something's wrong."
+			redirect_to new_story_path
+		end
+	end
+
 end

@@ -1,1 +1,18 @@
 <h1><%= @story.title %></h1>
+
+
+<%# No scenes yet %>
+<% if @story.scenes.count == 0 %>
+<p><%= link_to "Create introduction", new_story_scene_path(@story), class: 'btn btn-default' %></p>
+
+<%# Has scenes %>
+<% else %>
+	<% @story.scenes.each do |scene| %>
+	<ul class="list-unstyled">
+		<li>Subject: <%= scene.subject %> </li>
+		<li>Body: <%= scene.body %></li>
+	</ul>
+	<% end %>
+
+	<p><%= link_to "Create new scene", new_story_scene_path(@story), class: 'btn btn-default' %></p>
+<% end %>

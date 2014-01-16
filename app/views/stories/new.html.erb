@@ -1,1 +1,8 @@
 <h1>Create new story</h1>
+
+<%= simple_form_for @story do |f|%>
+
+	<%= f.input :title %>
+
+	<%= f.button :submit %> 
+<% end %>

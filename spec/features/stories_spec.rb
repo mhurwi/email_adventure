@@ -26,4 +26,36 @@ describe 'Stories' do
 		end
 	end
 
+	describe "NEW /stories" do 
+		before :each do 
+			visit new_story_path
+		end
+
+		it "has form" do 
+			expect(page).to have_content 'Title' 
+		end
+
+		it "creates saves a new story after entering title" do 
+			fill_in 'Title', with: 'One Million Monkeys'
+			click_button 'Create Story'
+			expect(page).to have_content 'One Million Monkeys'
+		end
+	end
+
+	describe "GET /stories/:id" do 
+		before :each do 
+			visit story_path(story)
+		end
+		context "starting with 0 scenes" do 
+			it "has button to create intro scene" do 
+				expect(page).to have_content "Create introduction"
+			end
+
+			it "goes to new scene page" do 
+				click_link "Create introduction"
+				expect(current_path).to eql new_story_scene_path(story)
+			end
+		end
+	end
+
 end

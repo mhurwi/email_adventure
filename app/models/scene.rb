@@ -1,7 +1,8 @@
 class Scene
 	include Mongoid::Document
 
-	field :text
+	field :subject
+	field :body
 	field :preceding_scene_id
 
 	belongs_to :story

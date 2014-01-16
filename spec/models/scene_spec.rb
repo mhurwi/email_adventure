@@ -18,9 +18,9 @@ describe Scene do
 		# Choice.stub(:find).and_return(choice)
 	end
 	
-	it "has text" do 
-		scene.text = "It was a dark and stormy night"
-		expect(scene.text).to eql "It was a dark and stormy night"
+	it "has body" do 
+		scene.body = "It was a dark and stormy night"
+		expect(scene.body).to eql "It was a dark and stormy night"
 	end
 
 	it "has many choices" do 
