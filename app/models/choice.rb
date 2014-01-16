@@ -11,7 +11,7 @@ class Choice
 		Scene.find(self.target_scene_id)
 	end
 
-	def target_scene_is_final?
+	def leads_to_final_scene?
 		self.target_scene.final?
 	end
 end

@@ -1,0 +1,11 @@
+<h1>Stories</h1>
+
+<div>
+	<ul class="list-unstyled">
+		<% @stories.each do |story| %>
+			<li><%= link_to story.title, story_path(story) %></li>
+		<% end %>
+	</ul>
+</div>
+
+<a href="#" class="btn">Create new story</a>

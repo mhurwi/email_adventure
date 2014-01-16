@@ -15,6 +15,8 @@ describe Choice do
 		expect(choice.target_scene).to eql target_scene
 	end
 
-	it "knows if it leads to the end"
+	it "knows if it leads to final scene" do 
+		expect(choice.leads_to_final_scene?).to be_true
+	end
 
 end

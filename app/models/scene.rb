@@ -21,8 +21,12 @@ class Scene
 		Scene.find(self.preceding_scene_id)
 	end
 
-	def preceding_choice
-		self.preceding_scene.choices.find(target_scene_id: self.id.to_s)
+	def next_possible_scenes
+		if not self.final?
+			self.choices.map do |choice|
+				choice.target_scene
+			end
+		end
 	end
 
 
