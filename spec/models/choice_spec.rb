@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Choice do 
 	let(:story) { FactoryGirl.create(:story) }
-	let(:scene) { story.scenes.create(text: "I am in love with you.") }
-	let(:target_scene) { story.scenes.create(text: "Hurray, I'm so happy!") }
+	let(:scene) { story.scenes.create(body: "I am in love with you.") }
+	let(:target_scene) { story.scenes.create(body: "Hurray, I'm so happy!") }
 	let(:choice) { scene.choices.create(target_scene_id: target_scene.id.to_s)}
 	
 	it "has text" do 

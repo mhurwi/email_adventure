@@ -3,6 +3,8 @@ EmailAdventure::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :users
   resources :stories do 
-  	resources :scenes
+  	resources :scenes do 
+  		resources :choices
+  	end
   end
 end

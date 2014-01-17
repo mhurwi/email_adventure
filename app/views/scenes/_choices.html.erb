@@ -1,0 +1,13 @@
+<% @scene.choices.each do |choice| %>
+	<ul class="list-unstyled">
+		<li><%= choice.text %></li>
+		<li><%= choice.target_scene %></li>
+		<li><%= link_to "Edit", edit_story_scene_choice_path(@story, @scene, choice) %></li>
+		<li><%= link_to "Delete", story_scene_choice_path(@story, @scene, choice), method: 'delete' %></li>
+	</ul>
+<% end %>
+
+
+<%= link_to "Create Choice", "/stories/#{@story.id.to_s}/scenes/#{@scene.id.to_s}/choices/new" %>
+
+

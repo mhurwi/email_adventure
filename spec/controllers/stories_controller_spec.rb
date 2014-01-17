@@ -16,12 +16,5 @@ describe StoriesController do
 			expect(assigns(:stories).first).to eql story
 		end
 
-		describe "request", :type => :feature do 
-			it "has a button to create a new story" do 
-				visit '/stories'
-binding.pry
-				expect(page).to have_content 'Create new story'
-			end
-		end
 	end
 end

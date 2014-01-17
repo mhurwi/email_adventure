@@ -11,6 +11,18 @@
 	<ul class="list-unstyled">
 		<li>Subject: <%= scene.subject %> </li>
 		<li>Body: <%= scene.body %></li>
+		<% if scene.choices? %>
+		<li>Player Choices:</li>
+		<li>
+			<ul>
+			<% scene.choices.each do |choice| %>
+				<li><%= choice.text %></li>
+			<% end %>
+			</ul>
+		</li>
+		<% end %>
+		<li><%= link_to "Edit Scene", edit_story_scene_path(@story, scene) %></li>
+		<li><%= link_to "Delete", story_scene_path(@story, scene), method: "delete" %></li>
 	</ul>
 	<% end %>
 

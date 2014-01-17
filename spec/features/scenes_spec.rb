@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe 'Scenes' do 
 	let(:story) { FactoryGirl.create(:story) }
+	let(:scene) { story.scenes.create }
 	
 	describe 'NEW /story/:story_id/scenes' do 
 		before :each do 
@@ -33,4 +34,19 @@ describe 'Scenes' do
 			expect(current_path).to eql story_path(story)
 		end
 	end
+
+	describe 'EDIT /story/:story_id/scenes' do 
+		before :each do 
+			target_scene = story.scenes.create(subject: "and you were killed!", body:"too bad the gnarfle ate you.")
+			visit edit_story_scene_path(story, scene)
+		end
+
+		it "can create a new choice" do 
+			click_link "Create Choice"
+			expect(current_path).to eql new_story_scene_choice_path(story, scene)
+		end
+	end
+
+
+
 end

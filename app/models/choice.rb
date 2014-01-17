@@ -5,10 +5,10 @@ class Choice
 	field :target_scene_id
 
 
-	belongs_to :scene
+	embedded_in :scene
 
 	def target_scene
-		Scene.find(self.target_scene_id)
+		Scene.find(self.target_scene_id) if self.target_scene_id?
 	end
 
 	def leads_to_final_scene?
