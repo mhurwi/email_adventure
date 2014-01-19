@@ -30,6 +30,7 @@ describe 'Choices' do
 			before :each do
 				click_link "Create Target Scene"
 			end
+			
 			it "goes to new target scene" do 
 				target_scene = Scene.find(choice.reload.target_scene_id)
 				expect(current_path).to eq edit_story_scene_path(story, target_scene)

@@ -18,6 +18,17 @@ class ScenesController < ApplicationController
 		@scene = @story.scenes.find(params[:id])
 	end
 
+	def update
+		@story = Story.find(params[:story_id])
+		@scene = @story.scenes.find(params[:id])
+		if @scene.update_attributes(params[:scene])
+			flash[:notice] = "Your changes have been saved!"
+			redirect_to edit_story_scene_path(@story, @scene)
+		else
+			flash[:error] = "Whoops! Could not save your changes."
+		end
+	end
+
 	def destroy
 		@story = Story.find(params[:story_id])
 		@scene = @story.scenes.find(params[:id])
