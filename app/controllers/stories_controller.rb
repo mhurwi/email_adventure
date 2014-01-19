@@ -28,4 +28,15 @@ class StoriesController < ApplicationController
 		end
 	end
 
+	def destroy
+		@story = Story.find(params[:id])
+		if @story.remove
+			flash[:notice] = "You have deleted the story '#{@story.title}'"
+			redirect_to stories_path
+		else
+			flash[:error] = "Whoops! Failed to delete this story"
+			redirect_to @story
+		end
+	end
+
 end

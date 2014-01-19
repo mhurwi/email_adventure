@@ -52,4 +52,6 @@
 </div><!-- /row -->
 
 	<p><%= link_to "Create new scene", new_story_scene_path(@story), class: 'btn btn-default' %></p>
+	<br>
+	<p><%= link_to "Delete Story", story_path(@story), class: 'btn btn-default', method: "delete", class: "btn btn-danger", data: {confirm: "Are you sure you want to delete this story? It will be gone forever more."} %></p>
 <% end %>
