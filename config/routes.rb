@@ -4,7 +4,9 @@ EmailAdventure::Application.routes.draw do
   resources :users
   resources :stories do 
   	resources :scenes do 
-  		resources :choices
+  		resources :choices do 
+  			post 'create_target_scene' => "choices#create_target_scene", as: "create_target_scene"
+  		end
   	end
   end
 end

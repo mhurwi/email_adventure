@@ -22,6 +22,26 @@ describe 'Choices' do
 			choice
 			visit edit_story_scene_choice_path(story, scene, choice)
 		end
-
 	end
+
+	describe 'EDIT /story/:story_id/scenes/:scene_id/choices/:choice_id' do 
+		before :each do 
+			choice
+			visit edit_story_scene_choice_path(story, scene, choice)
+		end
+
+		it "has a button to create target scene" do 
+			expect(page).to have_content "Create Target Scene"
+		end
+
+
+		context '#create_target_scene' do 
+			before :each do
+				visit story_scene_choice_create_target_scene_path(story, scene, choice)
+			end
+			
+		end
+	end
+
+
 end

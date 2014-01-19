@@ -52,4 +52,21 @@ class ChoicesController < ApplicationController
 		end
 	end
 
+	def create_target_scene
+		@story = Story.find(params[:story_id])
+		@scene = Scene.find(params[:scene_id])
+		@choice = @scene.choices.find(params[:choice_id])
+		begin
+			@target_scene = @story.scenes.create(
+				preceding_scene_id: @scene.id.to_s)
+			@choice.update_attributes(
+				target_scene_id: @target_scene.id.to_s)
+				flash[:notice] = "Target scene created!"
+				redirect_to edit_story_scene_path(@story, @scene)
+		rescue
+			flash[:error] = "Whoops! Error updating this choice"
+			redirect_to edit_story_scene_choice_path(@story, @scene, @choice)
+		end	
+	end
+
 end
