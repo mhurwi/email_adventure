@@ -62,7 +62,7 @@ class ChoicesController < ApplicationController
 			@choice.update_attributes(
 				target_scene_id: @target_scene.id.to_s)
 				flash[:notice] = "Target scene created!"
-				redirect_to edit_story_scene_path(@story, @scene)
+				redirect_to edit_story_scene_path(@story, @target_scene)
 		rescue
 			flash[:error] = "Whoops! Error updating this choice"
 			redirect_to edit_story_scene_choice_path(@story, @scene, @choice)

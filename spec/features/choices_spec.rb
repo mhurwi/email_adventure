@@ -10,19 +10,11 @@ describe 'Choices' do
 			choice
 			visit new_story_scene_choice_path(story, scene)
 		end
-
 		it "has input for text" do 
 			expect(page).to have_content "Text"
 		end
-
 	end
 
-	describe 'NEW /story/:story_id/scenes/:scene_id/choices/new' do 
-		before :each do 
-			choice
-			visit edit_story_scene_choice_path(story, scene, choice)
-		end
-	end
 
 	describe 'EDIT /story/:story_id/scenes/:scene_id/choices/:choice_id' do 
 		before :each do 
@@ -34,12 +26,15 @@ describe 'Choices' do
 			expect(page).to have_content "Create Target Scene"
 		end
 
-
 		context '#create_target_scene' do 
 			before :each do
-				visit story_scene_choice_create_target_scene_path(story, scene, choice)
+				click_link "Create Target Scene"
 			end
-			
+			it "goes to new target scene" do 
+				target_scene = Scene.find(choice.reload.target_scene_id)
+				expect(current_path).to eq edit_story_scene_path(story, target_scene)
+			end
+
 		end
 	end
 
