@@ -12,6 +12,6 @@
 <% end %>
 
 
-<%= link_to "Create Choice", "/stories/#{@story.id.to_s}/scenes/#{@scene.id.to_s}/choices/new" %>
+<%= link_to "Create Choice", new_story_scene_choice_path(@story, @scene), class: 'btn btn-default' %>
 
 

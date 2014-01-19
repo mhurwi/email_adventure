@@ -1,12 +1,13 @@
-<h1>Edit scene for <%= @story.title %></h1>
+<h4>Story: "<%= @story.title %>"</h4> 
+<h1>Edit Scene</h1>
 
 <% if @scene.preceding_scene_id.present? %>
 <p class="text-muted">
-	Goto preceding scene >>
+	Preceding scene >>
 	<%= link_to @scene.preceding_scene.body, edit_story_scene_path(@story, @scene.preceding_scene) %>
 </p>
 <p class="text-muted">
-	Goto preceding choice >>
+	Preceding choice >>
 	<%= link_to @scene.preceding_choice.text, story_scene_choice_path(@story, @scene.preceding_scene, @scene.preceding_choice) %>
 </p>
 
@@ -18,8 +19,10 @@
 
 <h2>Current Scene</h2>
 <%= render 'scenes/form' %>
+
+<h2>Choices</h2>
 <%= render 'scenes/choices' %>
 
 <p>
-	<%= link_to "Back to story", story_path(@story) %>
+	<%= link_to "<< Back to story", story_path(@story) %>
 </p>
