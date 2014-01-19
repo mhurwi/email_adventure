@@ -2,9 +2,9 @@
 	<ul class="list-unstyled">
 		<li><%= choice.text %></li>
 		<% if choice.target_scene_id.present? %>
-			<li><%= link_to "Target scene", edit_story_scene_path(@story,choice.target_scene) %></li>
+			<li><%= link_to "Goto Target scene", edit_story_scene_path(@story,choice.target_scene) %></li>
 		<% else %>
-			<li><%= link_to "Create Target Scene",story_scene_choice_create_target_scene_path(@story, @scene, choice) %></li>
+			<li><%= link_to "Create Target Scene",story_scene_choice_create_target_scene_path(@story, @scene, choice), method: 'post' %></li>
 		<% end %>
 		<li><%= link_to "Edit", edit_story_scene_choice_path(@story, @scene, choice) %></li>
 		<li><%= link_to "Delete", story_scene_choice_path(@story, @scene, choice), method: 'delete' %></li>

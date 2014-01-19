@@ -4,6 +4,13 @@
 
 
 <div>
-	<p><%= link_to "Create Target Scene", story_scene_choice_create_target_scene_path(@story, @scene, @choice), method: 'post' %>
-	</p>
+	<h2>Target Scene</h2>
+	<% if @choice.target_scene_id.present? %>
+		<p>
+			<%= link_to @choice.target_scene.subject, edit_story_scene_path(@story, @choice.target_scene) %>
+		</p>
+	<% else %>
+		<p><%= link_to "Create Target Scene", story_scene_choice_create_target_scene_path(@story, @scene, @choice), method: 'post', class: "btn btn-default" %>
+		</p>
+	<% end %>
 </div>

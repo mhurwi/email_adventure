@@ -7,24 +7,49 @@
 
 <%# Has scenes %>
 <% else %>
-	<% @story.scenes.each do |scene| %>
-	<ul class="list-unstyled">
-		<li>Subject: <%= scene.subject %> </li>
-		<li>Body: <%= scene.body %></li>
-		<% if scene.choices? %>
-		<li>Player Choices:</li>
-		<li>
-			<ul>
-			<% scene.choices.each do |choice| %>
-				<li><%= choice.text %></li>
-			<% end %>
-			</ul>
-		</li>
+<div class="row">
+	<div class="col-md-6">
+		<% @story.scenes.each do |scene| %>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<p>Subject: <%= scene.subject %> </p>	
+			</div>
+			<div class="panel-body">
+				<p>Body: <%= scene.body %></p>		
+			
+				<% if scene.choices? %>
+					<% scene.choices.each do |choice| %>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Choice</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><%= choice.text %></td>
+								<td><%= link_to "edit", edit_story_scene_choice_path(@story, scene, choice)%></td>
+								<td>
+									<% if choice.target_scene_id.present? %>
+									<%= link_to "goto target scene", edit_story_scene_path(@story, choice.target_scene) %>
+									<% else %>
+									<%= link_to "create target scene", story_scene_choice_create_target_scene_path(@story, scene, choice), method: 'post' %>
+									<% end %>
+								</td>
+							</tr>
+						</tbody>
+					</table>						
+					<% end %>
+				<% end %>
+				<p><%= link_to "Edit Scene", edit_story_scene_path(@story, scene), class: "btn btn-default" %></p>
+				<p><%= link_to "Delete", story_scene_path(@story, scene), method: "delete", class: "btn btn-default" %></p>
+			</div>
+		</div>
 		<% end %>
-		<li><%= link_to "Edit Scene", edit_story_scene_path(@story, scene) %></li>
-		<li><%= link_to "Delete", story_scene_path(@story, scene), method: "delete" %></li>
-	</ul>
-	<% end %>
+	</div>
+</div><!-- /row -->
 
 	<p><%= link_to "Create new scene", new_story_scene_path(@story), class: 'btn btn-default' %></p>
 <% end %>

@@ -1,8 +1,6 @@
 <%= simple_form_for [@story, @scene, @choice ] do |f| %>
   <%= f.input :text %>
-
   <%# todo: select target scene from among all scenes in story that do not yet have a target_scene_id %>
-  <%= f.input :target_scene_id %>
   <%= f.button :submit %>
 <% end %>
 

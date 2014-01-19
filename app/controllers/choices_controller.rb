@@ -20,6 +20,10 @@ class ChoicesController < ApplicationController
 		end
 	end
 
+	def show
+		redirect_to edit_story_scene_choice_path(params[:story_id],params[:scene_id],params[:id]  )
+	end
+
 	def edit
 		@story = Story.find(params[:story_id])
 		@scene = Scene.find(params[:scene_id])

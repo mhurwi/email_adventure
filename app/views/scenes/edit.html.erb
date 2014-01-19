@@ -1,6 +1,25 @@
 <h1>Edit scene for <%= @story.title %></h1>
 
+<% if @scene.preceding_scene_id.present? %>
+<p class="text-muted">
+	Goto preceding scene >>
+	<%= link_to @scene.preceding_scene.body, edit_story_scene_path(@story, @scene.preceding_scene) %>
+</p>
+<p class="text-muted">
+	Goto preceding choice >>
+	<%= link_to @scene.preceding_choice.text, story_scene_choice_path(@story, @scene.preceding_scene, @scene.preceding_choice) %>
+</p>
+
+<% else %>
+	<p class="text-muted">
+		This scene has no preceding scene.
+	</p>
+<% end %>
+
+<h2>Current Scene</h2>
 <%= render 'scenes/form' %>
 <%= render 'scenes/choices' %>
 
-<%= link_to "Back to story", story_path(@story) %>
+<p>
+	<%= link_to "Back to story", story_path(@story) %>
+</p>

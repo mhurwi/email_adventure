@@ -47,7 +47,9 @@ describe Scene do
 		expect(scene.next_possible_scenes.count).to eql 2
 	end
 
-
+	it "gets preceding choice" do 
+		expect(scene2.preceding_choice).to eq choice
+	end
 
 	
 
