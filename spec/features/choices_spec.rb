@@ -23,12 +23,12 @@ describe 'Choices' do
 		end
 
 		it "has a button to create target scene" do 
-			expect(page).to have_content "Create Target Scene"
+			expect(page).to have_content "Create and Assign a New Target Scene"
 		end
 
 		context '#create_target_scene' do 
 			before :each do
-				click_link "Create Target Scene"
+				click_link "Create and Assign a New Target Scene"
 			end
 			
 			it "goes to new target scene" do 

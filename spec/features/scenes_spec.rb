@@ -21,16 +21,16 @@ describe 'Scenes' do
 		end
 
 		it "creates a new scene" do 
-			fill_in "Subject", with: "Can we talk?"
-			fill_in "Body", with: "You are in danger."
-			click_button "Create Scene"
+			fill_in "scene[subject]", with: "Can we talk?"
+			fill_in "scene[body]", with: "You are in danger."
+			click_button "Save"
 			expect(page).to have_content "Can we talk?"
 		end	
 
 		it "displays new scene on the story page" do 
-			fill_in "Subject", with: "Can we talk?"
-			fill_in "Body", with: "You are in danger."
-			click_button "Create Scene"
+			fill_in "scene[subject]", with: "Can we talk?"
+			fill_in "scene[body]", with: "You are in danger."
+			click_button "Save"
 			expect(current_path).to eql story_path(story)
 		end
 	end

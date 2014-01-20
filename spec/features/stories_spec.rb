@@ -28,6 +28,7 @@ describe 'Stories' do
 
 	describe "NEW /stories" do 
 		before :each do 
+			story
 			visit new_story_path
 		end
 
