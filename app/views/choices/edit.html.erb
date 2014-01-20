@@ -8,16 +8,37 @@
 <%= render 'choices/form' %>
 
 
+
 <div class="row">
 	<div class="col-md-6">
-		<h2>Target Scene for this choice:</h2>
-		<% if @choice.target_scene_id.present? %>
-			<p>
-				<%= link_to @choice.target_scene.subject, edit_story_scene_path(@story, @choice.target_scene) %>
-			</p>
+	<% if @choice.target_scene_id.present? %>
+		<h3>Target Scene</h3>
 		<% else %>
-			<p><%= link_to "Create Target Scene", story_scene_choice_create_target_scene_path(@story, @scene, @choice), method: 'post', class: "btn btn-default" %>
-			</p>
+		<p class="text-muted">This choice does not have a target scene</p>
 		<% end %>
+		<%= form_for [@story, @scene, @choice], html: {class: "form"} do |f| %>
+			<%= f.label "Target Scene" %>
+			<%= f.collection_select(
+										:target_scene_id, 
+										@story.scenes,
+										:id.to_s,
+										:subject, 
+										include_blank: '---',
+										class: "form-control" 
+																					) %>
+			<%= f.submit "Update Target Scene", class: "btn btn-default" %>
+			<hr>
+			<%= link_to "Create and Assign a New Target Scene", story_scene_choice_create_target_scene_path(@story, @scene, @choice), method: 'post', class: "btn btn-default" %>
+			<% end %>
+	</div>
+</div>
+
+<hr>
+
+<div class="row">
+	<div class="col-md-6">
+		<p>
+			<%= link_to "<< Back to scene", edit_story_scene_path(@story, @scene), class: "btn btn-default" %>		
+		</p>
 	</div>
 </div>

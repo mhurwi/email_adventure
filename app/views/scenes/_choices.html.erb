@@ -3,9 +3,9 @@
 <thead>
 	<tr>
 		<th>Text</th>
-		<th>Goto or Create</th>
-		<th>Edit</th>
-		<th>Delete</th>
+		<th>Target Scene</th>
+		<th></th>
+		<th></th>
 	</tr>
 </thead>
 <tbody>
@@ -13,11 +13,11 @@
 	<tr>
 		<td><%= choice.text %></td>
 		<% if choice.target_scene_id.present? %>
-			<td><%= link_to "Goto Target scene", edit_story_scene_path(@story,choice.target_scene) %></td>
+			<td><%= link_to "'#{choice.target_scene.subject}'", edit_story_scene_path(@story,choice.target_scene) %></td>
 		<% else %>
 			<td><%= link_to "Create Target Scene",story_scene_choice_create_target_scene_path(@story, @scene, choice), method: 'post' %></td>
 		<% end %>
-		<td><%= link_to "Edit", edit_story_scene_choice_path(@story, @scene, choice) %></td>
+		<td><%= link_to "Edit Choice", edit_story_scene_choice_path(@story, @scene, choice) %></td>
 		<td><%= link_to "Delete", story_scene_choice_path(@story, @scene, choice), method: 'delete' %></td>
 	</tr>
 	<% end %>

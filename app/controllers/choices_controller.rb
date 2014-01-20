@@ -13,10 +13,10 @@ class ChoicesController < ApplicationController
 		@scene = Scene.find(params[:scene_id])
 		if @choice = @scene.choices.create(params[:choice])
 			flash[:notice] = "Saved!"
-			redirect_to edit_story_scene_path(@story, @scene)
+			redirect_to edit_story_scene_choice_path(@story, @scene, @choice)
 		else
 			flash[:error] = "Whoops! Error updating this choice"
-			redirect_to edit_story_scene_path(@story, @scene)
+			redirect_to edit_story_scene_choice_path(@story, @scene, @choice)
 		end
 	end
 
@@ -36,10 +36,10 @@ class ChoicesController < ApplicationController
 		@choice = @scene.choices.find(params[:id])
 		if @choice.update_attributes(params[:choice])
 			flash[:notice] = "Your changes have been saved!"
-			redirect_to edit_story_scene_path(@story, @scene)
+			redirect_to edit_story_scene_choice_path(@story, @scene, @choice)
 		else
 			flash[:error] = "Whoops! Error updating this choice"
-			redirect_to edit_story_scene_path(@story, @scene)
+			redirect_to edit_story_scene_choice_path(@story, @scene, @choice)
 		end
 	end
 
