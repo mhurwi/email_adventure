@@ -28,6 +28,22 @@ class StoriesController < ApplicationController
 		end
 	end
 
+	def edit
+		@story = Story.find(params[:id])
+		respond_with @story
+	end
+
+	def update
+		@story = Story.find(params[:id])
+		if @story.update_attributes(params[:story])
+			flash[:notice] = "Your changes have been saved!"
+			redirect_to story_path(@story)
+		else
+			flash[:error] = "Whoops! Something's wrong."
+			redirect_to edit_story_path
+		end
+	end
+
 	def destroy
 		@story = Story.find(params[:id])
 		if @story.remove

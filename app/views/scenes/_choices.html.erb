@@ -1,17 +1,34 @@
-<% @scene.choices.each do |choice| %>
-	<ul class="list-unstyled">
-		<li><%= choice.text %></li>
+
+<table class="table">
+<thead>
+	<tr>
+		<th>Text</th>
+		<th>Goto or Create</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+</thead>
+<tbody>
+	<% @scene.choices.each do |choice| %>
+	<tr>
+		<td><%= choice.text %></td>
 		<% if choice.target_scene_id.present? %>
-			<li><%= link_to "Goto Target scene", edit_story_scene_path(@story,choice.target_scene) %></li>
+			<td><%= link_to "Goto Target scene", edit_story_scene_path(@story,choice.target_scene) %></td>
 		<% else %>
-			<li><%= link_to "Create Target Scene",story_scene_choice_create_target_scene_path(@story, @scene, choice), method: 'post' %></li>
+			<td><%= link_to "Create Target Scene",story_scene_choice_create_target_scene_path(@story, @scene, choice), method: 'post' %></td>
 		<% end %>
-		<li><%= link_to "Edit", edit_story_scene_choice_path(@story, @scene, choice) %></li>
-		<li><%= link_to "Delete", story_scene_choice_path(@story, @scene, choice), method: 'delete' %></li>
-	</ul>
-<% end %>
+		<td><%= link_to "Edit", edit_story_scene_choice_path(@story, @scene, choice) %></td>
+		<td><%= link_to "Delete", story_scene_choice_path(@story, @scene, choice), method: 'delete' %></td>
+	</tr>
+	<% end %>
+</tbody>
+</table>
 
+<div class="row">
+	<div class="col-md-6">
+		<%= link_to "Create Choice", new_story_scene_choice_path(@story, @scene), class: 'btn btn-default' %>		
+	</div>
+</div>
 
-<%= link_to "Create Choice", new_story_scene_choice_path(@story, @scene), class: 'btn btn-default' %>
 
 

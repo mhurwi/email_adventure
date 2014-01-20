@@ -1,5 +1,11 @@
-<%= simple_form_for [@story, @scene] do |f| %>
-  <%= f.input :subject %>
-  <%= f.input :body, as: :text %>
-  <%= f.button :submit %>
-<% end %>
+		<%= form_for([@story, @scene], html: {class: "form"}) do |f| %>
+		  <div class="form-group">
+		  	<%= f.label "Subject" %>
+		  	<%= f.text_field :subject, class: "form-control" %>
+		  </div>
+		  <div class="form-group">
+		  	<%= f.label "Body" %>
+			  <%= f.text_area :body, class: "form-control" %>
+			</div>
+			<%= f.button "Save", class: "btn btn-default", type: "submit" %>
+		<% end %>	

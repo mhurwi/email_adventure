@@ -1,28 +1,46 @@
-<h4>Story: "<%= @story.title %>"</h4> 
-<h1>Edit Scene</h1>
+<div class="row">
+	<div class="col-md-6">
+		<h4>Story: "<%= @story.title %>"</h4> 
+		<h1>Scene Editor</h1>
 
-<% if @scene.preceding_scene_id.present? %>
-<p class="text-muted">
-	Preceding scene >>
-	<%= link_to @scene.preceding_scene.body, edit_story_scene_path(@story, @scene.preceding_scene) %>
-</p>
-<p class="text-muted">
-	Preceding choice >>
-	<%= link_to @scene.preceding_choice.text, story_scene_choice_path(@story, @scene.preceding_scene, @scene.preceding_choice) %>
-</p>
+		<% if @scene.preceding_scene_id.present? %>
+		<p class="text-muted">
+			Preceding scene >>
+			<%= link_to @scene.preceding_scene.body, edit_story_scene_path(@story, @scene.preceding_scene) %>
+		</p>
+		<p class="text-muted">
+			Preceding choice >>
+			<%= link_to @scene.preceding_choice.text, story_scene_choice_path(@story, @scene.preceding_scene, @scene.preceding_choice) %>
+		</p>
 
-<% else %>
-	<p class="text-muted">
-		This scene has no preceding scene.
-	</p>
-<% end %>
+		<% else %>
+			<p class="text-muted">
+				This scene has no preceding scene.
+			</p>
+		<% end %>
+	</div>
+</div>
 
-<h2>Current Scene</h2>
-<%= render 'scenes/form' %>
+<div class="row">
+	<div class="col-md-6">
+		<h2>Current Scene</h2>
+		<%= render 'scenes/form' %>		
+	</div>
+</div>
 
-<h2>Choices</h2>
-<%= render 'scenes/choices' %>
+<div class="row">
+	<div class="col-md-6">
+		<h2>Choices</h2>
+		<%= render 'scenes/choices' %>
+	</div>
+</div>
 
-<p>
-	<%= link_to "<< Back to story", story_path(@story) %>
-</p>
+<hr>
+
+<div class="row">
+	<div class="col-md-6">
+		<p>
+			<%= link_to "<< Back to story", story_path(@story), class: "btn btn-default"%>
+		</p>
+	</div>
+</div>
