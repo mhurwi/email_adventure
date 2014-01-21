@@ -23,6 +23,10 @@ describe Character do
 		expect(character.last_name).to eq "Frankfurter"
 	end
 
+	it "gets full name" do 
+		expect(character.full_name).to eq "Frank Frankfurter"
+	end
+
 	it "belongs to a user" do 
 		expect(character.user).to eql user
 	end

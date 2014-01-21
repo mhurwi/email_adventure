@@ -1,3 +1,7 @@
 <h1>Your Character</h1>
 
-<%= @character.first_name %>
+<%= @character.full_name %>
+
+<p>
+	<%= link_to "Edit Character", edit_user_character_path(@user, @character) %>
+</p>

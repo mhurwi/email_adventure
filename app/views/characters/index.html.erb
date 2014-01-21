@@ -1,1 +1,36 @@
 <h1>Your Characters</h1>
+
+<div class="row">
+	<div class="col-md-6 characters">
+		
+		<% @characters.each do |character| %>
+		<div class="panel character">
+			<div class="panel-heading">
+				<%= character.full_name %>
+			</div>
+			<div class="panel-body">
+				<ul class="list-unstyled">
+					<% if character.email_account? %>
+					<li><%= character.email_account.address %></li>
+					<% else %>
+					<li>This character has no email account!</li>
+					<% end %>
+				</ul>
+
+				<p>
+					<%= link_to "Edit Character", edit_user_character_path(@user, character), class: "btn btn-warning" %>
+				</p>
+			</div><!-- /panel-body -->
+		</div>
+		<% end %>
+
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<p>
+			<%= link_to "Create New Character", new_user_character_path(@user), class: "btn btn-default"  %>
+		</p>
+	</div>
+</div>

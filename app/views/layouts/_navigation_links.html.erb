@@ -1,7 +1,12 @@
 <%# add navigation links to this file %>
 
-<li><%= link_to "Stories", stories_path %></li>
+<li>
+	<%= link_to "Stories", stories_path %>
+</li>
 <% if user_signed_in? %>
+	<li>
+		<%= link_to "Characters", user_characters_path(current_user) %>
+	</li>
   <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>
 <% else %>
   <li><%= link_to 'Login', new_user_session_path %></li>

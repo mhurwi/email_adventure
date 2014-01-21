@@ -13,4 +13,8 @@ class Character
 	def scenes
 		Scene.where(character_id: self.id.to_s)
 	end
+
+	def full_name
+		self.first_name + " " + self.last_name
+	end
 end
