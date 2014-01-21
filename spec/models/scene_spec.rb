@@ -1,8 +1,17 @@
 require 'spec_helper'
 
 describe Scene do 
+	let(:user) { FactoryGirl.create(:user)}
+	let(:character) { user.characters.create(
+				first_name: "Frank", 
+				last_name: "Frankfurter",
+		)}
+	let(:email_account) { character.create_email_account(
+				address: "frank@example.com"
+		)}
 	let(:story) { FactoryGirl.create(:story) }
-	let(:scene) { story.scenes.create }
+	let(:scene) { story.scenes.create(
+		character_id: character.id.to_s) }
 	let(:scene2) { story.scenes.create(
 			preceding_scene_id: scene.id.to_s
 		) }
@@ -51,6 +60,16 @@ describe Scene do
 		expect(scene2.preceding_choice).to eq choice
 	end
 
+	context "character" do 
+		it 'has a character' do 
+			expect(scene.character.first_name).to eql "Frank"
+		end
+
+		it 'can assign a new character' do 
+			scene3.assign_character(character)
+			expect(scene3.character).to eql character
+		end
+	end
 	
 
 end

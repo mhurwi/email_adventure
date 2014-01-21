@@ -4,6 +4,7 @@ class Scene
 	field :subject
 	field :body
 	field :preceding_scene_id
+	field :character_id
 
 	belongs_to :story
 
@@ -35,5 +36,13 @@ class Scene
 		end
 	end
 
+	def character
+		Character.find(self.character_id)
+	end
+
+	def assign_character(character)
+		self.update_attributes(character_id: character.id.to_s)
+	end
+	
 
 end

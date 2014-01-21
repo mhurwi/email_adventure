@@ -37,7 +37,7 @@ describe 'Stories' do
 		end
 
 		it "creates saves a new story after entering title" do 
-			fill_in 'Title', with: 'One Million Monkeys'
+			fill_in 'story[title]', with: 'One Million Monkeys'
 			click_button 'Create Story'
 			expect(page).to have_content 'One Million Monkeys'
 		end

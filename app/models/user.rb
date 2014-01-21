@@ -36,4 +36,7 @@ class User
   # field :locked_at,       :type => Time
 
   field :name
+
+  has_many :characters, inverse_of: :user
+  accepts_nested_attributes_for :characters, allow_destroy: true
 end
