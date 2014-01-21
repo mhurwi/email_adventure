@@ -18,4 +18,24 @@ describe CharactersController do
 		end
 	end
 
+
+	context '#show' do 
+		before :each do 
+			get :show, user_id: user.id.to_s, id: character.id.to_s
+		end
+
+		it "assigns @character" do 
+			expect(assigns(:character)).to eql character
+		end
+	end
+
+	context '#new' do 
+		before :each do 
+			get :new, user_id: user.id.to_s
+		end
+
+		it "gets new character" do 
+			expect(assigns(:character)).to be_present
+		end
+	end	
 end
