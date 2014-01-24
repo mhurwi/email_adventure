@@ -35,8 +35,8 @@ describe 'Characters' do
 			expect(page).to have_content "bob@example.com"
 		end
 
-		it "has an edit button for each character" do 
-			expect(page).to have_content "Edit"
+		it "has a button for each character" do 
+			expect(page).to have_content "View Character"
 		end
 	end
 end

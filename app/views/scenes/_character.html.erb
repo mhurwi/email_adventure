@@ -1,0 +1,12 @@
+<%= form_for [@story, @scene], html: {class: "form"} do |f| %>
+	<%= f.label "Character" %>
+	<%= f.collection_select(
+										:character_id, 
+										current_user.characters,
+										:id.to_s,
+										:full_name, 
+										include_blank: '---',
+										class: "form-control" 
+																					) %>
+	<%= f.submit "Assign Character", class: "btn btn-default" %>
+<% end %>

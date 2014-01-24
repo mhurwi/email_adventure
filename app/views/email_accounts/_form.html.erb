@@ -1,0 +1,15 @@
+<div class="row">
+	<div class="col-md-6">
+		<%= form_for([@user, @character, @email_account ], html: {class: "form"}) do |f| %>
+		  <div class="form-group">
+		  	<%= f.label "Address" %>
+		  	<%= f.text_field :address, class: "form-control" %>
+		  <%# todo: select target scene from among all scenes in story that do not yet have a target_scene_id %>
+		  </div>
+		  <%= f.button "Save", class: "btn btn-success", type: "submit" %>
+			<%= link_to "Cancel", user_character_path(@user, @character), class: "btn btn-warning" %>
+		<% end %>		
+	</div>
+</div>
+
+
