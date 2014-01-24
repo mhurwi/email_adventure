@@ -15,6 +15,11 @@ describe EmailAccountsController do
 		)}
 	let(:story) { FactoryGirl.create(:story) }
 
+	before :each do 
+		sign_in user
+	end
+
+
 	context '#show' do 
 		before :each do 
 			get :show, 

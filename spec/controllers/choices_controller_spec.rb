@@ -3,11 +3,13 @@ require 'spec_helper'
 describe ChoicesController do 
 
 	context '#create_target_scene' do 
+		let(:user) { FactoryGirl.create(:user)}
 		let(:story) { FactoryGirl.create(:story)}
 		let(:scene) { story.scenes.create }
 		let(:choice) { scene.choices.create }
 
 		before :each do 
+			sign_in user
 			post :create_target_scene, 
 						story_id: story.id.to_s,
 						scene_id: scene.id.to_s,

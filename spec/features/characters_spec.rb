@@ -15,6 +15,14 @@ describe 'Characters' do
 		)}
 	let(:story) { FactoryGirl.create(:story) }
 
+	before :each do 
+		login_as(user, :scope => :user)
+	end
+
+	after :each do 
+			Warden.test_reset! 
+	end
+
 	context 'INDEX /users/:user_id/characters' do 
 		before :each do 
 			character

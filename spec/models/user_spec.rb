@@ -10,6 +10,15 @@ describe User do
       :password_confirmation => "changeme"
     }
   end
+  let(:user) { FactoryGirl.create(:user)}
+  let(:story) { user.stories.create }
+
+  context "stories" do 
+    it "gets list of its stories" do 
+      story
+      expect(user.stories.first).to eq story
+    end
+  end
 
   it "should create a new instance given a valid attribute" do
     User.create!(@attr)

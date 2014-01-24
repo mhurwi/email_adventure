@@ -1,7 +1,18 @@
 require 'spec_helper'
 
 describe 'Stories' do 
-	let(:story) { FactoryGirl.create(:story) }
+	let(:user) { FactoryGirl.create(:user) }
+	let(:story) { user.stories.create(title: "Test Story") }
+
+	before :each do 
+		login_as(user, :scope => :user)
+	end
+
+	after :each do 
+			Warden.test_reset! 
+	end
+
+
 	describe 'GET /stories' do 
 		before :each do 
 			story

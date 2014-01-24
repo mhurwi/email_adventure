@@ -21,6 +21,10 @@ describe 'Scenes' do
 	let(:choice) { scene.choices.create(target_scene_id: scene2.id.to_s) }
 	let(:choice2) { scene.choices.create(target_scene_id: scene3.id.to_s) }
 	
+	before :each do 
+		login_as(user, :scope => :user)
+	end
+
 	after :each do 
 			Warden.test_reset! 
 	end
@@ -58,7 +62,6 @@ describe 'Scenes' do
 
 	describe 'EDIT /story/:story_id/scenes' do 
 		before :each do 
-			login_as(user, :scope => :user)
 			target_scene = story.scenes.create(subject: "and you were killed!", body:"too bad the gnarfle ate you.")
 			visit edit_story_scene_path(story, scene)
 		end

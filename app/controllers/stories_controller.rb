@@ -1,9 +1,10 @@
 class StoriesController < ApplicationController
+	before_filter :authenticate_user!
 
 	respond_to :html
 
 	def index
-		@stories = Story.all
+		@stories = current_user.stories
 		respond_with @stories
 	end
 
@@ -18,7 +19,7 @@ class StoriesController < ApplicationController
 	end
 
 	def create
-		@story = Story.new(params[:story])
+		@story = current_user.stories.create(params[:story])
 		if @story.save
 			flash[:notice] = "Great! You have created a new story!"
 			redirect_to story_path(@story)

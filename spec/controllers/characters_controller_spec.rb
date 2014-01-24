@@ -4,6 +4,11 @@ describe CharactersController do
 	let(:user) { FactoryGirl.create(:user) }
 	let(:character) { user.characters.create(first_name: "Bob")}
 
+	before :each do 
+		sign_in user
+	end
+
+
 	context '#index' do 
 		before :each do 
 			get :index, user_id: user.id.to_s

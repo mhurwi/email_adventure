@@ -1,9 +1,18 @@
 require 'spec_helper'
 
 describe 'Choices' do 
+	let(:user) { FactoryGirl.create(:user) }
 	let(:story) { FactoryGirl.create(:story) }
 	let(:scene) { story.scenes.create(subject: "Hi!") }
 	let(:choice) { scene.choices.create() }
+
+	before :each do 
+		login_as(user, :scope => :user)
+	end
+
+	after :each do 
+			Warden.test_reset! 
+	end
 	
 	describe 'NEW /story/:story_id/scenes/:scene_id/choices/new' do 
 		before :each do 
