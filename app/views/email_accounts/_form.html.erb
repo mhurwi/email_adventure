@@ -5,6 +5,10 @@
 		  	<%= f.label "Address" %>
 		  	<%= f.text_field :address, class: "form-control" %>
 		  </div>
+		  <div class="form-group">
+		  	<%= f.label "SMTP Server Address" %>
+		  	<%= f.text_field :smtp_address, class: "form-control" %>
+		  </div>		  
 			<div class="form-group">
 		  	<%= f.label "User Name" %>
 		  	<%= f.text_field :user_name, class: "form-control" %>
@@ -14,7 +18,7 @@
 		  	<%= f.text_field :domain, class: "form-control" %>
 		  </div>
 		  <div class="form-group">
-		  	<%= f.label "Password type" %>
+		  	<%= f.label "Password" %>
 		  	<%= f.text_field :password, class: "form-control" %>
 		  </div>
 		  <div class="form-group">

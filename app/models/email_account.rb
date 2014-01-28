@@ -6,9 +6,11 @@ class EmailAccount
 	# SMTP settings
 	field :user_name # API key from sendgrid, or mandrill, or etc
 	field :port
+	field :smtp_address
 	field :domain
+	field :password
 	field :authentication
-	field :enable_starttls_auto
+	field :enable_starttls_auto, default: true
 
 
 	belongs_to :character, inverse_of: :email_account
