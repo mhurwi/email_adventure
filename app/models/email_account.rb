@@ -3,6 +3,14 @@ class EmailAccount
 
 	field :address
 
+	# SMTP settings
+	field :user_name # API key from sendgrid, or mandrill, or etc
+	field :port
+	field :domain
+	field :authentication
+	field :enable_starttls_auto
+
+
 	belongs_to :character, inverse_of: :email_account
 
 # has_one: :smtp_settings, inverse_of: :email_account
