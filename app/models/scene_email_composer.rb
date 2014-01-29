@@ -4,36 +4,39 @@ class SceneEmailComposer
 	attribute :story
 	attribute :scene
 	attribute :character
-	attribute :recipient
+	attribute :player
 
 
 	# This model takes the components of
 	# an email and gets them ready for the 
 	# scene mailer.
 	# 
-	# It will be called by the email_processor
-	# in response to an incoming reply from a player
-	#
-	# Or, it will be called by the email API 
-	# when a player signs up to start a new story.
+	# It will be called in 2 situations:
+	# - when a player signs up to start a new story
+	# - in response to an incoming reply from a player
 	#
 	# In either case, the mailer will need:
 	# story_id
 	# scene_id
 	# scene.subject
-	# sceene.body
+	# scene.body
 	# scene.choices.each {|c| c.text }
 	# character.name
 	# character.address
 	# character.email_account
-	# recipient.email
+	# player.email
+	# 
+	# After the mail is sent, some other model
+	# needs to update the player according to
+	# the choice they made and where they are in the 
+	# story.
 
 	def send_next_scene
 		SceneMailer.next_scene(
 			self.story, 
 			self.scene, 
 			self.character,
-			self.recipient
+			self.player
 			).deliver
 	end
 
@@ -42,7 +45,7 @@ class SceneEmailComposer
 			self.story, 
 			self.scene, 
 			self.character,
-			self.recipient
+			self.player
 			).deliver
 	end
 
