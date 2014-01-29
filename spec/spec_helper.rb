@@ -55,6 +55,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'email_spec'
 require 'rspec/autorun'
+require "active_attr/rspec"
 include Warden::Test::Helpers
 Warden.test_mode!
 
