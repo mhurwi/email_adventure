@@ -7,7 +7,9 @@ describe SceneMailer do
 				last_name: "Frankfurter",
 		)}
 	let(:email_account) { character.create_email_account(
-				address: "frank@example.com"
+				address: "frank@example.com",
+				smtp_host: "smtp.google.com",
+				password: "testtest"
 		)}
 	let(:story) { FactoryGirl.create(:story) }
 	let(:scene) { story.scenes.create(
@@ -21,21 +23,26 @@ describe SceneMailer do
 	let(:choice) { scene.choices.create(target_scene_id: scene2.id.to_s) }
 	let(:choice2) { scene.choices.create(target_scene_id: scene3.id.to_s) }
 	let(:player) { OpenStruct.new(email: "player@example.com")} 	
- 	let(:sent_intro_email) { SceneMailer.intro_scene(
+ 	let(:sent_email) { SceneMailer.scene_email(
  				story, scene, character, player
- 				).deliver}
-	context "intro_scene" do 
- 		it "sends the intro scene" do 
- 			sent_intro_email
- 			expect(ActionMailer::Base.deliveries.count).to eql 1
- 		end
- 		it "users players address" do 
- 			expect(sent_intro_email.to).to eql ["player@example.com"]
- 		end
+ 				)}
+
+ 	before :each do 
+ 		email_account
+ 		sent_email.deliver
  	end
 
- 	context "next_scene" do 
- 		it "sends the next scene"
+	context "scene_email" do 
+ 		it "sends the scene" do 
+ 			expect(ActionMailer::Base.deliveries.count).to eql 1
+ 		end
+ 		it "uses players address" do 
+ 			expect(sent_email.to).to eql ["player@example.com"]
+ 		end
+ 		it "uses characters address" do 
+ 			email_account
+ 			expect(sent_email.from).to eql ["frank@example.com"]
+ 		end
  	end
 
  	context "required data" do 

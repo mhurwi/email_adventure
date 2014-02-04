@@ -46,17 +46,17 @@ describe SceneEmailComposer do
 			SceneMailer = double("SceneMailer", deliver: true)
 		end
 		it "calls SceneMailer to send intro scene" do 
-			SceneMailer.should_receive(:intro_scene).with(
+			SceneMailer.should_receive(:scene_email).with(
 				story, scene, character, player
 				).and_return(SceneMailer)
-			scene_email_composer.send_intro_scene
+			scene_email_composer.send_scene_email
 		end
 		it "calls SceneMailer to send the next scene" do 
-			# SceneMailer.should_receive(:next_scene)
-			SceneMailer.should_receive(:next_scene).with(
+			# SceneMailer.should_receive(:scene_email)
+			SceneMailer.should_receive(:scene_email).with(
 				story, scene, character, player
 				).and_return(SceneMailer)
-			scene_email_composer.send_next_scene
+			scene_email_composer.send_scene_email
 		end
 	end
 

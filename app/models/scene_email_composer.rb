@@ -31,8 +31,8 @@ class SceneEmailComposer
 	# the choice they made and where they are in the 
 	# story.
 
-	def send_next_scene
-		SceneMailer.next_scene(
+	def send_scene_email
+		SceneMailer.scene_email(
 			self.story, 
 			self.scene, 
 			self.character,
@@ -40,8 +40,8 @@ class SceneEmailComposer
 			).deliver
 	end
 
-	def send_intro_scene
-		SceneMailer.intro_scene(
+	def send_scene_email
+		SceneMailer.scene_email(
 			self.story, 
 			self.scene, 
 			self.character,

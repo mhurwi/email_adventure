@@ -6,7 +6,7 @@ class EmailAccount
 	# SMTP settings
 	field :user_name # API key from sendgrid, or mandrill, or etc
 	field :port
-	field :smtp_address
+	field :smtp_host
 	field :domain
 	field :password
 	field :authentication
