@@ -1,6 +1,18 @@
 EmailAdventure::Application.routes.draw do
   root :to => "home#index"
   devise_for :users, :controllers => {:registrations => "registrations"}
+
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+
+      resources :stories do 
+        collection do 
+          post "start_story" => "stories#start_story", as: "start_story"
+        end
+      end
+    end
+  end
+
   resources :users do 
     resources :characters do 
       resources :email_accounts
