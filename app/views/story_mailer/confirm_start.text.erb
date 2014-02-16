@@ -1,0 +1,10 @@
+Hello <%= @player.email %>!
+
+I am the friendly Email Adventure AI. 
+
+Would you like to start your new story?  
+
+If so, please click this link and confirm:
+
+<%= link_to 'Yes, I want to start this adventure',
+						confirm_start_api_v1_stories_path(@player.confirmation_token)

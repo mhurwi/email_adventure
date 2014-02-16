@@ -45,6 +45,10 @@ class User
   has_many :characters, inverse_of: :user
   accepts_nested_attributes_for :characters, allow_destroy: true
 
+  has_one :player_account, inverse_of: :user
+  accepts_nested_attributes_for :player_account, allow_destroy: true
+
   has_many :stories, inverse_of: :user
   accepts_nested_attributes_for :stories, allow_destroy: true
+
 end

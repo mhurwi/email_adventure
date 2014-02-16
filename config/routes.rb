@@ -8,6 +8,7 @@ EmailAdventure::Application.routes.draw do
       resources :stories do 
         collection do 
           post "start_story" => "stories#start_story", as: "start_story"
+          post "confirm_start" => "stories#confirm_start", as: "confirm_start"
         end
       end
     end
