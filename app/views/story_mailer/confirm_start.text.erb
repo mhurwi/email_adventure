@@ -7,4 +7,10 @@ Would you like to start your new story?
 If so, please click this link and confirm:
 
 <%= link_to 'Yes, I want to start this adventure',
-						confirm_start_api_v1_stories_path(@player.confirmation_token)
+						confirm_start_api_v1_stories_path(
+							story_id: @story.id.to_s,
+							player_account_id: @player.id.to_s,
+							confirmation_token: @player.confirmation_token,
+							),
+						method: 'post'
+%>
