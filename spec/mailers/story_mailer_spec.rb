@@ -25,7 +25,7 @@ describe StoryMailer do
 		end
 		it "uses the app deafault SMPT settings"
 		it "includes link to confirm_start" do 
-			expect(sent_email.body).to match confirm_start_api_v1_stories_path
+			expect(sent_email.body).to match story_confirmation_success_url(story.id.to_s)
 		end
 		it "includes confirmation_token" do 
 			expect(sent_email.body).to match "12345"
