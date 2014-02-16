@@ -19,27 +19,23 @@ module Api
 				end
 			end
 
+			# After the player receives his 'confirmation' email,
+			# he clicks the link in the email and hits this action.
+			# We redirect from here to the main Stories Controller,
+			# where we actually start his story and send 
+			# his first email.
 			def confirm_start
 				@player_account = PlayerAccount.find(params[:player_account_id])
-				@story = Story.find(:story_id)
+				@story = Story.find(params[:story_id])
 				respond_to do |format|
 					if params[:confirmation_token] == @player_account.confirmation_token
-							@player_account.add_story(@story)
-							SceneMailer.scene_email(
-								@story, 
-								@story.scenes.first, 
-								@story.scenes.first.character,
-								@player_account
-							).deliver
-							format.html # confirm_start page
+						format.json { redirect_to story_confirmation_success_path(@story.id.to_s) }
 					else
-							flash[:error] = "Sorry!  Your confirmation link seems incorrect."
-							redirect_to root_path
+						flash[:error] = "Sorry!  Your confirmation link seems incorrect."
+						format.json { redirect_to root_path}
 					end
 				end
 			end
-
-
 
 		end
 	end

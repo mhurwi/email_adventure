@@ -73,12 +73,12 @@ EmailAdventure::Application.configure do
   config.active_support.deprecation = :notify
 
   config.action_mailer.smtp_settings = {
-    address: "smtp.sendgrid.net",
-    port: 25,
+    address: "smtp.mandrillapp.com",
+    port: 587,
     domain: ENV["DOMAIN_NAME"],
     authentication: "plain",
-    user_name: ENV["SENDGRID_USERNAME"],
-    password: ENV["SENDGRID_PASSWORD"]
+    user_name: ENV["MANDRILL_USERNAME"],
+    password: ENV["MANDRILL_API"]
   }
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'example.com' }

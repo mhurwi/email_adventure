@@ -4,13 +4,12 @@ class StoryMailer < ActionMailer::Base
   	@story = story
   	@player = player_account
 
-  	# delivery_options = DEFAULTS
 
-  	mail( to: @player.email,
-          from: "hello@emailadventure.com",
-  				subject: "Ready to play '#{@story.title}'? Confirm!"
-  				# delivery_method_options: delivery_options
-  			)
+  	mail( 
+      to: @player.email,
+      from: "marlene@emailadventure.com",
+			subject: "Ready to play '#{@story.title}'? Confirm!"
+  	)
   end
 
 end

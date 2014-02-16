@@ -8,7 +8,7 @@ EmailAdventure::Application.routes.draw do
       resources :stories do 
         collection do 
           post "start_story" => "stories#start_story", as: "start_story"
-          post "confirm_start" => "stories#confirm_start", as: "confirm_start"
+          get "confirm_start" => "stories#confirm_start", as: "confirm_start"
         end
       end
     end
@@ -20,6 +20,7 @@ EmailAdventure::Application.routes.draw do
     end
   end
   resources :stories do 
+    get "confirmation_success" => "stories#confirmation_success", as: "confirmation_success"
   	resources :scenes do 
   		resources :choices do 
   			post 'create_target_scene' => "choices#create_target_scene", as: "create_target_scene"

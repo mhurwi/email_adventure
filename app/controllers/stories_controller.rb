@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-	before_filter :authenticate_user!
+	before_filter :authenticate_user!, except: [:confirmation_success]
 
 	respond_to :html
 
@@ -56,4 +56,18 @@ class StoriesController < ApplicationController
 		end
 	end
 
+	def confirmation_success
+		@story = Story.find(params[:story_id])
+		@player_account = PlayerAccount.find(params[:player_account_id])
+		@player_account.add_story(@story)
+		SceneMailer.scene_email(
+			@story, 
+			@story.scenes.first, 
+			@story.scenes.first.character,
+			@player_account
+		).deliver
+		respond_with @story
+	end
+
+	
 end
