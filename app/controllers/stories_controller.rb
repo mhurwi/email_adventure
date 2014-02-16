@@ -60,12 +60,17 @@ class StoriesController < ApplicationController
 		@story = Story.find(params[:story_id])
 		@player_account = PlayerAccount.find(params[:player_account_id])
 		@player_account.add_story(@story)
-		SceneMailer.scene_email(
-			@story, 
-			@story.scenes.first, 
-			@story.scenes.first.character,
-			@player_account
-		).deliver
+		if params[:confirmation_token] == @player_account.confirmation_token
+			SceneMailer.scene_email(
+				@story, 
+				@story.scenes.first, 
+				@story.scenes.first.character,
+				@player_account
+			).deliver
+		else
+			flash[:error] = "Sorry, that link didn't work!"
+			# TODO: this should actually redirect to a 'failed to confirm' page
+		end
 		respond_with @story
 	end
 

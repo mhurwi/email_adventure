@@ -57,30 +57,7 @@ describe 'api/v1/stories', type: :api do
 	end
 
 
-	context "#confirm_start" do 
-		it "sends first scene if the confirmation_token matches the player_account" do 
-			get "api/v1/stories/confirm_start", {
-																						story_id: story.id.to_s,
-																						player_account_id: player_account.id.to_s,
-																						confirmation_token: player_account.confirmation_token }
-			expect(ActionMailer::Base.deliveries.count).to eql 1
-		end
-		it "does not send first scene when incorrect confirmation token" do 
-			get "api/v1/stories/confirm_start", {
-																						story_id: story.id.to_s,
-																						player_account_id: player_account.id.to_s,
-																						confirmation_token: "apples" }
-			expect(ActionMailer::Base.deliveries.count).to eql 0
-		end
-		it "responds with success page if correct token" do 
-			get "api/v1/stories/confirm_start", {
-																						story_id: story.id.to_s,
-																						player_account_id: player_account.id.to_s,
-																						confirmation_token: player_account.confirmation_token }
-			expect(last_response.status).to eql 302
-		end
-
-	end
+	
 
 
 end
