@@ -9,8 +9,8 @@ class SceneMailer < ActionMailer::Base
 
   	delivery_options = { 
   												user_name: @character.full_name,
-  												password: @email_account.password,
-  												address: @email_account.smtp_host
+  												# password: @email_account.password,
+  												# address: @email_account.smtp_host
   											}
 
   	mail( to: @player.email,

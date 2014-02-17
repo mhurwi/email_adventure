@@ -1,6 +1,12 @@
 class EmailProcessor
   def self.process(email)
-    puts email
+    puts "==============================================="
+    puts "Receiving email:" 
+    puts "from: #{ email.from }"
+    puts "to: #{ email.to }"
+    puts "body: #{email.body }"
+
+    Email.create( to: email.to, from: email.from, body: email.body )
     # todo: send the email to SceneChooser
     # SceneChooser can figure out:
     # -- the player
