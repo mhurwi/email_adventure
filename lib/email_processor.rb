@@ -1,7 +1,13 @@
 class EmailProcessor
   def self.process(email)
-    # all of your application-specific code here - creating models,
-    # processing reports, etc
+    puts email
+    # todo: send the email to SceneChooser
+    # SceneChooser can figure out:
+    # -- the player
+    # -- what story he is playing
+    # -- what scene he is replying to
+    # -- what his reply is
+    # and then it can send the next appropriate scene.
   end
 
   # The email object contains the following attributes:
