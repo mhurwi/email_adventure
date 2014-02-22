@@ -9,6 +9,12 @@
 				<%= f.label "Last Name" %>
 				<%= f.text_field :last_name, class: "form-control" %>
 			</div>
+			<div class="form-group">
+				<p>Before starting a new story, the plahyer will recieve a confirmation email asking them to confirm.  The email will come from this character if you check here.</p>
+				<%= f.label "Set character as default" %>
+				<%= f.check_box :default, class: "form-control" %>
+			</div>
+
 			<%= f.submit class: "btn btn-success" %>
 			<%= link_to "Cancel", stories_path, class: "btn btn-warning" %>
 		<% end %>		

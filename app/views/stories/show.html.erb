@@ -2,6 +2,25 @@
 <p><%= link_to "Edit Story Settings", edit_story_path(@story) %></p>
 
 
+<h2>Characters in this story:</h2>
+<ul>
+	<% @story.characters.each do |character| %>
+		<li><%= character.full_name %></li>
+	<% end %>
+</ul>
+
+<%= form_for [@story], html: {class: "form"} do |f| %>
+	<%= f.label "Default Character" %>
+	<%= f.collection_select(
+										:default_character_id, 
+										@story.characters,
+										:id.to_s,
+										:full_name, 
+										include_blank: '---',
+										class: "form-control" 
+																					) %>
+	<%= f.submit "Set Default Character for Story", class: "btn btn-default" %>
+<% end %>
 
 <h2>Scenes:</h2>
 <%# No scenes yet %>

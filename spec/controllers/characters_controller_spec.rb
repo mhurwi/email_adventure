@@ -3,6 +3,7 @@ require 'spec_helper'
 describe CharactersController do 
 	let(:user) { FactoryGirl.create(:user) }
 	let(:character) { user.characters.create(first_name: "Bob")}
+	let(:character2) { user.characters.create(first_name: "Sam")}
 
 	before :each do 
 		sign_in user
@@ -68,13 +69,11 @@ describe CharactersController do
 	end
 
 	context '#update' do 
-		before :each do 
+		it "updates the first name" do 
 			put :update, user_id: user.id.to_s, id: character.id.to_s,
 										character: {
 											first_name: "Sally"
 										}
-		end
-		it "updates the first name" do 
 			expect(character.reload.first_name).to eql "Sally"
 		end
 	end

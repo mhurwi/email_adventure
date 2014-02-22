@@ -6,7 +6,13 @@ class EmailProcessor
     puts "to: #{ email.to }"
     puts "body: #{email.body }"
 
-    Email.create( to: email.to, from: email.from, body: email.body )
+    Email.create( 
+    	to: email.to, 
+    	from: email.from, 
+    	subject: email.subject,
+    	body: email.body,
+    	raw_body: email.raw_body,
+    	raw_headers: email.raw_headers ) 
     # todo: send the email to SceneChooser
     # SceneChooser can figure out:
     # -- the player
