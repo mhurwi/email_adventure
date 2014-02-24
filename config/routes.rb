@@ -1,6 +1,6 @@
 EmailAdventure::Application.routes.draw do
   # for temporary use to get Mandrill working: (?)
-  # get "/email_processor", to: proc { [200, {}, ["OK"]] }, as: "mandrill_head_test_request"
+  get "/email_processor", to: proc { [200, {}, ["OK"]] }, as: "mandrill_head_test_request"
 
   root :to => "home#index"
   devise_for :users, :controllers => {:registrations => "registrations"}
