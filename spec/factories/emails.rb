@@ -7,14 +7,14 @@ FactoryGirl.define do
     body 'Hello!'
     attachments {[]}
 
-    trait :with_attachment do
-      attachments {[
-        ActionDispatch::Http::UploadedFile.new({
-          filename: 'img.png',
-          type: 'image/png',
-          tempfile: File.new("#{File.expand_path File.dirname(__FILE__)}/fixtures/img.png")
-        })
-      ]}
-    end
+    # trait :with_attachment do
+    #   attachments {[
+    #     ActionDispatch::Http::UploadedFile.new({
+    #       filename: 'img.png',
+    #       type: 'image/png',
+    #       tempfile: File.new("#{File.expand_path File.dirname(__FILE__)}/fixtures/img.png")
+    #     })
+    #   ]}
+    # end
   end
 end
