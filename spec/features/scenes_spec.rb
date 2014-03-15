@@ -11,17 +11,24 @@ describe 'Scenes' do
 				address: "frank@example.com"
 		)}
 	let(:story) { FactoryGirl.create(:story) }
-	let(:scene) { story.scenes.create }
+	let(:scene) { story.scenes.create(
+				character_id: character.id.to_s
+		) }
 	let(:scene2) { story.scenes.create(
-			preceding_scene_id: scene.id.to_s
+			preceding_scene_id: scene.id.to_s,
+			character_id: character.id.to_s
 		) }
 	let(:scene3) { story.scenes.create(
-			preceding_scene_id: scene.id.to_s
+			preceding_scene_id: scene.id.to_s,
+			character_id: character.id.to_s
 		) }
 	let(:choice) { scene.choices.create(target_scene_id: scene2.id.to_s) }
 	let(:choice2) { scene.choices.create(target_scene_id: scene3.id.to_s) }
 	
 	before :each do 
+		story
+		scene
+		character
 		login_as(user, :scope => :user)
 	end
 

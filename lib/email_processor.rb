@@ -20,6 +20,7 @@ class EmailProcessor
     # -- what scene he is replying to
     # -- what his reply is
     # and then it can send the next appropriate scene.
+    Chooser.new(email: email).perform
   end
 
   # The email object contains the following attributes:

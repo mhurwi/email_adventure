@@ -1,9 +1,9 @@
 class SceneMailer < ActionMailer::Base
 
-  def scene_email(story, scene, character, player)
+  def scene_email(story, scene, player)
   	@story = story
   	@scene = scene
-  	@character = character
+  	@character = scene.character
   	@email_account = @character.email_account
   	@player = player
 

@@ -3,7 +3,9 @@ require 'spec_helper'
 
 describe 'api/v1/stories', type: :api do
 
-	let(:story) { Story.create(title: "Test Story") }
+	let(:story) { Story.create(
+		title: "Test Story",
+		default_character_id: character.id.to_s )}
 	let(:scene) { story.scenes.create(
 				character_id: character.id.to_s ) } 
 	let(:character) { Character.create(

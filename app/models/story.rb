@@ -15,7 +15,7 @@ class Story
 	def characters
 		characters = []
 		scenes.each do |scene|
-			characters << scene.character
+			characters << scene.character if scene.character_id.present?
 		end
 		characters
 	end

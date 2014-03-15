@@ -40,13 +40,5 @@ class SceneEmailComposer
 			).deliver
 	end
 
-	def send_scene_email
-		SceneMailer.scene_email(
-			self.story, 
-			self.scene, 
-			self.character,
-			self.player
-			).deliver
-	end
 
 end

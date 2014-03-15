@@ -1,10 +1,15 @@
 class Chooser
+	include ActiveAttr::Model
 
-	attr_reader :email
-	attr_accessor :player_email,
-								:story, 
-								:scene, 
-								:choice_text
+	attribute :email
+	attribute :player
+	attribute :story
+	attribute :scene
+	attribute :next_scene
+	attribute :choice_text
+	attribute :choice
+
+	validates_presence_of :email
 
 
 	# These class variables tell us where we can 
@@ -19,24 +24,26 @@ class Chooser
 	@@mark_scene_id_start = "scene_id:"
 	@@mark_scene_id_end = "/scene_id"
 
-	def initialize(email)
-		@email = email
+
+
+	def perform
+		parse_email
+		choose_next_scene
+		send_email
 	end
 
 
-	# Parse email is the main method that 
-	# tells us which story and scene the player
-	# replied to and the text of their reply.
+
+	##############################
+	# Parse and Extract from Email
+	# Setup the attributes for this email
 	def parse_email
-		self.player_email = self.email.from
+		self.player = User.find_by(email: self.email.from)
 		self.story = Story.find(extract_story_id)
 		self.scene = Scene.find(extract_scene_id)
 		self.choice_text = extract_choice.downcase
 	end
 
-
-	#################
-	# Private Methods
 	def extract_story_id
     self.email.body[/#{Regexp.escape(@@mark_story_id_start)}(.*?)#{Regexp.escape(@@mark_story_id_end)}/m, 1]
   end
@@ -47,6 +54,23 @@ class Chooser
 
   def extract_choice
     self.email.body.gsub("\n", "")[/(.*?)#{Regexp.escape(@@mark_story_id_start)}/m, 1]
+  end
+
+
+
+  ############################
+  # Choose and Send Next Scene
+  def choose_next_scene
+  	self.choice = scene.choices.find_by(text: choice_text)
+  	self.next_scene = Scene.find(choice.target_scene_id)
+  end
+
+  def send_email
+  	SceneMailer.scene_email(
+				story, 
+				next_scene, 
+				player
+			).deliver
   end
 
 end

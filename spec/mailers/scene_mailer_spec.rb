@@ -34,7 +34,7 @@ describe SceneMailer do
 		name: "Bilbo Baggins"
 		)} 	
  	let(:scene_email) { SceneMailer.scene_email(
- 				story, scene, character, player
+ 				story, scene, player
  				)}
 
  	before :each do 

@@ -64,7 +64,6 @@ class StoriesController < ApplicationController
 			SceneMailer.scene_email(
 				@story, 
 				@story.scenes.first, 
-				@story.scenes.first.character,
 				@player_account
 			).deliver
 		else
